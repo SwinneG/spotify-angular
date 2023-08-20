@@ -1,0 +1,20 @@
+<h1>{{ albumName }}</h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Durée</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor = "let detail of detailAlbum">
+            <th scope="row"> {{ detail.track_number }}</th>
+            <td>{{ detail.name }}</td>
+            <td>{{ detail.duration_ms | date:'mm:ss' }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<button routerLink="/bigfloetoli/discography" class="btn btn-outline-secondary">Retour</button>
