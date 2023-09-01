@@ -1,8 +1,10 @@
 <h1>Bienvenue sur spotify</h1>
 
-<button routerLink="/bigfloetoli/discography" class="btn btn-outline-secondary">
-    BigFlo & Oli
-</button>
-<button routerLink="/orelsan/discography" class="btn btn-outline-secondary">
-    Orelsan
-</button>
+<div *ngFor="let artist of artistsData">
+    <button 
+        (click)= "goToArtistAlbums(artist)" 
+        class="btn btn-outline-secondary"
+    >
+        {{artist.artistName}}
+    </button> 
+</div>

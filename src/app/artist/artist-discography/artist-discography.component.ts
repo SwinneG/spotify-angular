@@ -1,28 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../../spotify.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-bigfloetoli-discography',
-  templateUrl: './bigfloetoli-discography.component.html',
-  styleUrls: ['./bigfloetoli-discography.component.scss']
+  selector: 'app-artist-discography',
+  templateUrl: './artist-discography.component.html',
+  styleUrls: ['./artist-discography.component.scss'],
 })
-export class BigfloetoliDiscographyComponent implements OnInit {
-  bigFloOliID: string = "5mmEMfYChd6MImBagU7zCs";
+export class ArtistDiscographyComponent implements OnInit {
+  // bigFloOliID: string = "5mmEMfYChd6MImBagU7zCs";
   albumsList: any = [];
   filteredType: any = [];
+  artistId: string = "";
 
   constructor(
     private spotifyService: SpotifyService,
     private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    const artistId = this.route.snapshot.url[0].path;
+    this.artistId = artistId
+    // console.log(this.artistId)
+
     this.responseApi();
   }
 
   responseApi(){
-    this.spotifyService.getAlbumsOfArtist(this.bigFloOliID)
+    this.spotifyService.getAlbumsOfArtist(this.artistId)
       .subscribe(response => {
         this.albumsList = response;
         this.filterType();
@@ -31,7 +37,7 @@ export class BigfloetoliDiscographyComponent implements OnInit {
   }
 
   goToDetailAlbum(album: any) {
-    this.router.navigate(['/bigfloetoli/discography', album.id], { queryParams: { name: album.name } })
+    this.router.navigate([this.artistId,'discography', album.id], { queryParams: { name: album.name } })
   }
 
   filterType(type: string | null = null) {

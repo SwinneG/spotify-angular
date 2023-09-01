@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { BigfloetoliModule } from './bigfloetoli/bigfloetoli.module';
-import { OrelsanModule } from './orelsan/orelsan.module';
 import { HomeComponent } from './home/home.component';
+import { ArtistModule } from './artist/artist.module';
+import { SpotifyService } from './spotify.service';
 
 @NgModule({
   declarations: [
@@ -18,14 +18,13 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-    BigfloetoliModule,
-    OrelsanModule,
+    ArtistModule,
     NgbModule,
     HttpClientModule,
     AppRoutingModule,
    
   ],
-  providers: [],
+  providers: [SpotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

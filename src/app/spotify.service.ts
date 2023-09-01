@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Album } from './album.model';
@@ -9,14 +9,22 @@ import { AlbumTracks } from './album-tracks.model';
 })
 export class SpotifyService {
 
+ public artistsData: any = [];
+
   constructor(
     private http: HttpClient
-  ) { }
+  ) {}
+
+  public getArtistsFromJsonFile(){
+    const JSONurl: string = '/assets/artists.json';
+
+    return this.http.get(JSONurl)
+  }
 
   public getQuery(query: string) {
 
     const commonUrl: string = `https://api.spotify.com/v1/${query}`;
-    const token: string = 'BQA0JUatKI8iqsh0ROYDlgXTbP13Y9WppbUg1JvB7F7HGekjuhMg8o2obFmYkp6JKey-7htTnYIZQX7Uk85j4jsE251BPcCZiO96zjHdTRGINO7-SUU';
+    const token: string = 'BQCZKslMhFKhet_kJY73sbwz0piYfTARq3KgI0IxliVAAKMVd3oKcPF3cSetMpYXquYVQfQJz3kvxP75qaTKKq_yVNRBI4g6Pu0py-rm9Rh5gikRVQw';
 
     const httpOptions = {
       headers: new HttpHeaders(
@@ -28,20 +36,6 @@ export class SpotifyService {
 
     return this.http.get(commonUrl, httpOptions);
   }
-
-  // public getAlbumsOfArtist(artistId:string){
-    
-  //   const url: string = `artists/${artistId}/albums`;
-    
-  //   return this.getQuery(url).pipe(
-  //     tap((response) => console.log(response)),
-  //     catchError((error) => {
-  //       console.log(error);
-  //       return of({});
-  //     })
-  //   );
-
-  // }
 
   public getAlbumsOfArtist(artistId:string) {
     
@@ -72,18 +66,6 @@ export class SpotifyService {
     );
 
   }
-
-  // public getDetailAlbumByID(albumId:string) {
-  //   const url: string = `albums/${albumId}/tracks`;
-    
-  //   return this.getQuery(url).pipe(
-  //     tap((response) => console.log(response)),
-  //     catchError((error) => {
-  //       console.log(error);
-  //       return of({});
-  //     })
-  //   );
-  // }
 
   public getDetailAlbumByID(albumId:string){
     const url: string = `albums/${albumId}/tracks`;

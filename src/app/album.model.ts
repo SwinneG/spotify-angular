@@ -1,3 +1,5 @@
+import { AlbumTracks } from "./album-tracks.model";
+
 export class Album {
     total_tracks: number;
     id: string;
@@ -5,10 +7,5 @@ export class Album {
     name: string;
     release_date: string;
     album_type: string;
-    // tracks: [{
-    //     duration_ms: number;
-    //     id: string;
-    //     name: string;
-    //     track_number: number;
-    // }];
+    tracks: [AlbumTracks]
 }

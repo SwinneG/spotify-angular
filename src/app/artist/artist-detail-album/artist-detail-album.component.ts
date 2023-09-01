@@ -3,11 +3,11 @@ import { SpotifyService } from '../../spotify.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-bigfloetoli-detail-album',
-  templateUrl: './bigfloetoli-detail-album.component.html',
-  styleUrls: ['./bigfloetoli-detail-album.component.scss']
+  selector: 'app-artist-detail-album',
+  templateUrl: './artist-detail-album.component.html',
+  styleUrls: ['./artist-detail-album.component.scss']
 })
-export class BigfloetoliDetailAlbumComponent implements OnInit {
+export class ArtistDetailAlbumComponent implements OnInit {
 
   detailAlbum: any = [];
   albumName: any;
